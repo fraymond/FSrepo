@@ -1,0 +1,372 @@
+/* 800px 下的手机适配 */
+/* @media screen and (max-width:800px){html{font-size:100px}  }
+@media screen and (max-width:640px){html{font-size:90px}  }
+@media screen and (max-width:600px){html{font-size:82px}  }
+@media screen and (max-width:540px){html{font-size:75px}  }
+@media screen and (max-width:480px){html{font-size:68px}  }
+@media screen and (max-width:414px){html{font-size:60px}  }
+@media screen and (max-width:400px){html{font-size:56px}  }
+@media screen and (max-width:375px){html{font-size:51px}  }
+@media screen and (max-width:360px){html{font-size:46px}  }
+@media screen and (max-width:320px){html{font-size:42px}  } */
+@media screen and (max-width: 800px) {
+  html, body {
+    width: 100%!important;
+    min-width: 320px!important;
+    margin: 0;
+    padding: 0;
+    font-size: 12px!important;
+  }
+  .body-wapper {
+    overflow-x: auto;
+  }
+  .noty_message {
+    font-size: 62.5%;
+  }
+  /* 头部 */
+  .adaper-header {
+    position: relative;
+    width: 100%;
+    min-width: 320px;
+    overflow: hidden;
+    height: auto;
+    line-height: normal;
+    padding-top: 28px;
+  }
+  .adaper-header li {
+    float: none;
+  }
+  .adaper-header .logo {
+    width: 100%;
+    text-align: center;
+  }
+  .adaper-header .logo img {
+    width: auto!important;
+    height: auto!important;
+    max-width: 60%!important;
+  }
+  .adaper-header .menu {
+    width: 100%;
+    padding: 0;
+  }
+  .menu .el-menu--horizontal>.el-menu-item {
+    width: 25%;
+    height: 45px!important;
+    line-height: 45px!important;
+    text-align: center;
+  }
+  .adaper-header .user {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    padding: 0;
+    width: auto;
+    text-align: center;
+  }
+  .adaper-header .user .user-item {
+    height: auto;
+    line-height: normal;
+  }
+  /* 底部 */
+  .footer {
+    min-width: 320px;
+  }
+  .footer ul {
+    padding: 15px 0 5px 0!important;
+  }
+  /* 登录、注册、忘记密码 */
+  .site-wrapper {
+    min-width: 320px;
+    min-height: auto;
+  }
+  .site-wrapper.site-page--login .site-content {
+    width: 100%!important;
+    padding: 0!important;
+  }
+  .site-wrapper.site-page--login .login-main {
+    padding: 25px 5%!important;
+    width: 100%!important;
+  }
+  .site-wrapper.site-page--login .input-email-flex .el-form-item__content{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    box-sizing: border-box;
+  }
+  .site-wrapper.site-page--login .input-email, .site-wrapper.site-page--login .forget-input-email{
+    width: auto!important;
+    -webkit-box-flex: 1;  
+    -webkit-flex: 1;  
+    flex: 1;  
+    min-width: 0;
+  }
+  /* 关于我们、注册协议 */
+  .body-wapper {
+    /* padding: 0 10px; */
+  }
+  .coin {
+    padding: 30px 0;
+  }
+  .coinInfo {
+    width: 100%!important;
+    padding: 15px 10px!important;
+    min-height: 72vh;
+    line-height: 28px;
+    background-color: #fff;
+  }
+  .coinInfo .infoTitle {
+    width: 100%;
+  }
+  .coin .el-select, .coin .el-item-input, .coin .dialog-footer{
+    width: 100%!important;
+  }
+  .coin .dialog-footer {
+    padding: 0;
+  }
+  /* 上币申请 */
+  .apply-coin {
+    width: 100%;
+    padding: 25px 10px;
+  }
+  .apply-coin .b-page-title {
+    margin: 0 0 20px 0;
+    font-size: 1.4em;
+  }
+  .apply-coin .m-title {
+    font-size: 12px;
+  }
+  .apply-coin .el-form-item__label {
+    width: 140px!important;
+  }
+  .apply-coin .el-form-item__content {
+    margin-left: 140px!important;
+    overflow: hidden;
+  }
+  .apply-coin .m-input {
+    width: 100%;
+  }
+  /* 币种介绍 */
+  .main-setting {
+    width: 100%!important;
+  }
+  .l-tac {
+    width: 155px;
+  }
+  .l-menu .l-menu-title {
+    padding-left: 10px!important;
+  }
+  .l-menu:first-of-type .l-menu-title {
+    padding-left: 10px!important;
+  }
+  .l-menu .l-menu-item {
+    padding-left: 36px!important;
+  }
+  .l-tac .l-menu-item.is-active {
+    padding-left: 32px!important;
+  }
+  .mainTitle {
+    display: inline-block;
+    height: 36px!important;
+    line-height: 36px!important;
+    border-bottom: solid 2px #103990;
+    color: #103990;
+    font-weight: bold;
+    font-size: 15px!important;
+  }
+  .account {
+    border-top: solid #E5E5E5 2px;
+    width: 100%;
+    margin-top: -2px;
+    font-size: 14px;
+    overflow: auto;
+    overflow-x: hidden;
+  }
+  /* 首页 */
+  .home-wapper {
+    min-width: 320px;
+  }
+  .el-carousel__container {
+    height: 200px!important;
+  }
+  .home-table, .container {
+    padding: 0 5px!important;
+  }
+  .container .box > div{
+    font-size: 12px!important;
+  }
+  .home-table {
+    font-size: 12px!important;
+  }
+  .home-table .cmc-number {
+    display: block;
+    padding-right: 0;
+  }
+  .adv .box {
+    display: block!important;
+  }
+  .adv .box div {
+    width: 100%!important;
+  }
+  .adv .box div img {
+    padding-right: 0px!important;
+    max-width: 100%;
+  }
+  /* 设置 */
+  .l-tac {
+    width: 155px!important;
+  }
+  .r-view {
+    padding: 0 5px!important;
+    margin-left: 5px!important;
+  }
+  .list .el-row {
+    height: auto!important;
+    line-height: 30px!important;
+    padding-top: 10px!important;
+  }
+  .list .text-icon {
+    padding-top: 0!important;
+  }
+  .list .el-row .fa {
+    width: 30px!important;
+    height: 30px!important;
+    line-height: 30px!important;
+    font-size: 15px!important;
+  }
+  .list .text-title, .list .text-info {
+    margin: 0 5px!important;
+  }
+  .list .el-col-3, .list .el-col-4 {
+    width: auto;
+    text-align: right;
+  }
+  .list .el-col-4 {
+    float: right;
+  }
+  .list .el-col-10 {
+    width: 100%;
+    text-align: left;
+  }
+  .list .el-row .el-button {
+    font-size: 13px!important;
+    padding: 5px 10px!important;
+  }
+  .el-dialog {
+    width: 90%!important;
+  }
+  .el-dialog__body {
+    padding: 15px 5px;
+  }
+  .el-dialog .get-email-code .el-input {
+    width: 65%!important;
+  }
+  .el-dialog .get-email-code .el-button {
+    padding: 10px 5px;
+  }
+  /* 地址添加 */
+  .account1 .addAddress {
+    position: absolute;
+    top: 1%;
+    right: 5%;
+    margin-top: 0.2%;
+    color: #0c3d8c;
+    border-color: #0c3d8c;
+    border-radius: 7px;
+  }
+  .coin1 {
+    padding: 30px 0;
+  }
+  .coin1 .coinInfo {
+    padding: 20px 10px!important;
+    width: 100%!important;
+  }
+  .coin1 .infoTitle {
+    width: 100%!important;
+  }
+  .google-vali {
+    display: block!important;
+  }
+  .google-vali .qr-code {
+    margin: 0 auto!important;
+  }
+  .binding-qrcode .el-form-item__label {
+    width: 80px;
+    font-size: 12px!important;
+  }
+  .binding-qrcode .el-form-item__content {
+    margin-left: 80px!important; 
+  }
+  /* 交易 */
+  .business .left {
+    width: 100%!important;
+  }
+  .business .left .bargain {
+    max-height: 480px;
+    overflow-y: scroll;
+  }
+  .business.box {
+    -webkit-flex-wrap:wrap;
+    -webkit-box-lines:multiple;
+    -moz-flex-wrap:wrap;
+    	 flex-wrap:wrap;
+  }
+  .business.box .center {
+    width: 100%;
+    min-width: 320px;
+    margin-top: 20px;
+    margin-left: 0;
+  }
+  .business.box .center .show-k {
+    width: 100%;
+    min-width: 320px;
+  }
+  .business.box .center .el-radio-button--small .el-radio-button__inner {
+    padding:10px 10px;
+  }
+  .business.box .center .h-kline {
+    width: 100%;
+    min-width: 320px;
+  }
+  .business.box .box {
+    -webkit-flex-wrap:wrap;
+    -webkit-box-lines:multiple;
+    -moz-flex-wrap:wrap;
+    	 flex-wrap:wrap;
+  }
+  .business.box .center .c-title {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .business.box .transaction {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 10px;
+  }
+  .business.box .transaction .box{
+    -webkit-flex-wrap:wrap;
+    -webkit-box-lines:multiple;
+    -moz-flex-wrap:wrap;
+    	 flex-wrap:wrap;
+  }
+  .business.box .transaction .transaction-l, .business.box .transaction .transaction-r {
+    border: 0;
+    margin:0;
+    padding-right: 0;
+  }
+  .business.box .transaction .transaction-l {
+    padding-right: 10px;
+  }
+  .business.box .transaction .table-coin {
+    margin-right: 0;
+  }
+  .business.box .transaction .el-form-item__content .input-title {
+    width: 40%!important;
+    margin-left: 0!important;
+  }
+  .business.box .center .price {
+    width: 100%;
+    padding: 0 10px;
+    border-left: 0;
+  }
+}
