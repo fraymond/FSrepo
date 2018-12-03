@@ -94,7 +94,7 @@ public class Constant {
     /**
      * 线上baseUrl
      */
-    public static final String BASE_URL = "http://47.107.99.26:8888/";
+    public static final String BASE_URL = "";
     /**
      *本地测试baseUrl
      */
