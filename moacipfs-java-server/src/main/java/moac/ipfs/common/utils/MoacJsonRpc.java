@@ -31,8 +31,8 @@ import java.util.Map;
 public class MoacJsonRpc {
     static Logger log = LoggerFactory.getLogger(MoacJsonRpc.class);
 
-    private static final String MAIN_CHAIN_URL = "http://35.236.108.149:8545";
-    private static final String SUB_CHAIN_URL = "http://35.227.40.187:50068/rpc";
+    private static final String MAIN_CHAIN_URL = "";
+    private static final String SUB_CHAIN_URL = "";
 
     /**
      * 生产
