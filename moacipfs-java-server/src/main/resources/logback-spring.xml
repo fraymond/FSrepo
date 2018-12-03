@@ -5,10 +5,17 @@
     <logger name="org.springboot.sample" level="TRACE" />
 
     <!-- 开发、测试环境 -->
-    <springProfile name="dev,test">
+    <springProfile name="dev">
         <logger name="org.springframework.web" level="INFO"/>
         <logger name="org.springboot.sample" level="INFO" />
         <logger name="moac.ipfs" level="DEBUG" />
+    </springProfile>
+
+    <!-- 线上测试环境 -->
+    <springProfile name="test">
+        <logger name="org.springframework.web" level="ERROR"/>
+        <logger name="org.springboot.sample" level="ERROR" />
+        <logger name="moac.ipfs" level="ERROR" />
     </springProfile>
 
     <!-- 生产环境 -->

@@ -4,13 +4,13 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
         druid:
             first:
-                url: jdbc:mysql://localhost:3306/moacipfs?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
-                username: moacipfs
-                password: 123456
+                url: jdbc:mysql://rm-wz956q76op3w2zwsvko.mysql.rds.aliyuncs.com:3306/moacipfstest?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                username: root
+                password: Myqbit2017
             second:
-                url: jdbc:mysql://localhost:3306/moacipfs?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
-                username: moacipfs
-                password: 123456
+                url: jdbc:mysql://rm-wz956q76op3w2zwsvko.mysql.rds.aliyuncs.com:3306/moacipfstest?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                username: root
+                password: Myqbit2017
             initial-size: 10
             max-active: 100
             min-idle: 10

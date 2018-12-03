@@ -15,7 +15,16 @@ public class CfgUtils {
 
     private boolean ignoreSign;
     private boolean ignoreLogin;
+    private boolean saveFlag;
     private Long testUserId;
+
+    public boolean isSaveFlag() {
+        return saveFlag;
+    }
+
+    public void setSaveFlag(boolean saveFlag) {
+        this.saveFlag = saveFlag;
+    }
 
     public Long getTestUserId() {
         return testUserId;

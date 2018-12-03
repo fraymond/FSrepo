@@ -47,6 +47,30 @@ public class SubchainEntity implements Serializable {
 	 * 系统用户地址
 	 */
 	private String sysAddress;
+	/**
+	 * 矿池存储规格
+	 */
+	private String storageSpecification;
+	/**
+	 * 矿池类型(0:0.5T,1:1T,2:2T,3:4T,4:8T,5:16T,6:32T)
+	 */
+	private Integer subchain_type;
+
+	public Integer getSubchain_type() {
+		return subchain_type;
+	}
+
+	public void setSubchain_type(Integer subchain_type) {
+		this.subchain_type = subchain_type;
+	}
+
+	public String getStorageSpecification() {
+		return storageSpecification;
+	}
+
+	public void setStorageSpecification(String storageSpecification) {
+		this.storageSpecification = storageSpecification;
+	}
 
 	public String getSysAddress() {
 		return sysAddress;

@@ -12,6 +12,10 @@ import org.hibernate.validator.constraints.NotBlank;
 @ApiModel(value = "hash查看文件")
 public class FileParamsForm {
 
+    @ApiModelProperty(value = "套餐id")
+    @NotBlank(message="请选择套餐！")
+    private long storagePackageId;
+
     @ApiModelProperty(value = "用户地址")
     @NotBlank(message="用户地址不能为空")
     private String address;
@@ -33,6 +37,14 @@ public class FileParamsForm {
 
     @ApiModelProperty(value = "文件是否加密（0：不加密，1：加密）")
     private Integer encrypt;
+
+    public long getStoragePackageId() {
+        return storagePackageId;
+    }
+
+    public void setStoragePackageId(long storagePackageId) {
+        this.storagePackageId = storagePackageId;
+    }
 
     public Integer getEncrypt() {
         return encrypt;

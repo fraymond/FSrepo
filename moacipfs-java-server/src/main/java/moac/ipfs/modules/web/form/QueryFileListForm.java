@@ -13,8 +13,8 @@ import org.hibernate.validator.constraints.NotBlank;
 @ApiModel(value = "查询文件列表")
 public class QueryFileListForm {
 
-    @ApiModelProperty(value = "密码")
-    @NotBlank(message="密码不能为空")
+    @ApiModelProperty(value = "用户id")
+    @NotBlank(message="用户id不能为空")
     private Long userId;
 
     @ApiModelProperty(value = "文件hash")

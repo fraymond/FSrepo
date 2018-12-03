@@ -7,15 +7,11 @@ import io.swagger.annotations.ApiOperation;
 import moac.ipfs.common.utils.PageUtils;
 import moac.ipfs.common.utils.Query;
 import moac.ipfs.common.utils.R;
-import moac.ipfs.modules.back.user.entity.FileLogEntity;
-import moac.ipfs.modules.back.user.entity.UserEntity;
-import moac.ipfs.modules.back.user.entity.UserFileEntity;
+import moac.ipfs.modules.back.storagePackage.entity.StoragePackageEntity;
+import moac.ipfs.modules.back.user.entity.*;
 import moac.ipfs.modules.back.user.service.FileLogService;
 import moac.ipfs.modules.back.user.service.UserFileService;
-import moac.ipfs.modules.web.form.ImportAddressForm;
-import moac.ipfs.modules.web.form.CreateAddressForm;
-import moac.ipfs.modules.web.form.FileParamsForm;
-import moac.ipfs.modules.web.form.QueryFileListForm;
+import moac.ipfs.modules.web.form.*;
 import moac.ipfs.modules.web.service.BaseWebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +37,19 @@ public class BaseWebController {
     private UserFileService userFileService;
     @Autowired
     private FileLogService fileLogService;
+
+
+    /**
+     * 查询首页数据
+     * @param request
+     * @return
+     */
+    @PostMapping("queryHomeData")
+    @ApiOperation("查询首页数据")
+    public R queryHomeData(HttpServletRequest request) {
+        Map<String,Object> data = baseWebService.queryHomeDataService(request);
+        return R.ok("查询首页数据成功！").put("data", data);
+    }
 
     /**
      * 导入地址
@@ -67,6 +75,19 @@ public class BaseWebController {
     public R createAddress(@RequestBody CreateAddressForm form,HttpServletRequest request) {
         UserEntity userEntity = baseWebService.createAddressService(form, request);
         return R.ok("创建地址成功！").put("data", userEntity);
+    }
+
+    /**
+     * 查询私钥
+     * @param form
+     * @param request
+     * @return
+     */
+    @PostMapping("queryPrivateKey")
+    @ApiOperation("查询私钥")
+    public R queryPrivateKey(@RequestBody ImportAddressForm form,HttpServletRequest request) {
+        String privateKey = baseWebService.queryPrivateKeyService(form);
+        return R.ok("查询私钥成功！").put("privateKey", privateKey);
     }
 
     /**
@@ -146,5 +167,79 @@ public class BaseWebController {
 
         return R.ok().put("page", pageUtil);
     }
+
+    /**
+     * fst兑换子链coin
+     * @param assetsForm
+     * @return
+     */
+    @PostMapping("fstToSubChainCoin")
+    @ApiOperation("fst兑换子链coin")
+    public R fstToSubChainCoin(@RequestBody AssetsFormEntity assetsForm){
+        baseWebService.fstToSubChainCoinService(assetsForm);
+        return R.ok("fst兑换子链coin成功！");
+    }
+
+    /**
+     * 子链coin兑换fst
+     * @param assetsForm
+     * @return
+     */
+    @PostMapping("subChainCoinToFst")
+    @ApiOperation("子链coin兑换fst")
+    public R subChainCoinToFst(@RequestBody AssetsFormEntity assetsForm){
+        baseWebService.subChainCoinToFstService(assetsForm);
+        return R.ok("子链coin兑换fst！");
+    }
+
+
+    /**
+     * 用户购买套餐
+     * @param from
+     * @return
+     */
+    @PostMapping("buyPackage")
+    @ApiOperation("用户购买套餐")
+    public R buyPackage(@RequestBody StoragePackageParamsFrom from){
+        baseWebService.subChainTransService(from);
+        return R.ok("购买成功!");
+    }
+
+    /**
+     * 用户查询余额
+     * @param form
+     * @return
+     */
+    @PostMapping("queryBalance")
+    @ApiOperation("用户查询余额")
+    public R queryBalance(@RequestBody AssetsFormEntity form){
+        UserAssetsEntity userAssetsEntity =baseWebService.queryBalanceService(form);
+        return R.ok("查询余额成功！").put("userAssets",userAssetsEntity);
+    }
+
+    /**
+     * 用户查询资产列表
+     * @param form
+     * @return
+     */
+    @PostMapping("queryAssetsList")
+    @ApiOperation("用户查询资产列表")
+    public R queryAssetsList(@RequestBody AssetsFormEntity form){
+        List<UserAssetsEntity> userAssetsEntityList =baseWebService.queryAssetsListService(form);
+        return R.ok("查询资产列表成功！").put("data",userAssetsEntityList);
+    }
+
+    /**
+     * 用户套餐列表
+     * @param form
+     * @return
+     */
+    @PostMapping("queryPackageList")
+    @ApiOperation("用户套餐列表")
+    public R queryPackageList(@RequestBody StoragePackageParamsFrom form) {
+        List<StoragePackageEntity> list = baseWebService.queryPackageListService(form);
+        return R.ok("查询用户套餐列表成功！").put("data",list);
+    }
+
 
 }

@@ -43,5 +43,4 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
 		return userDao.queryUserIdByAddress(address);
 	}
 
-
 }

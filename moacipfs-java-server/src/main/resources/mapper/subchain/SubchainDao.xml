@@ -12,6 +12,8 @@
         <result property="useSize" column="use_size"/>
         <result property="percentageUse" column="percentage_use"/>
 		<result property="sysAddress" column="sys_address"/>
+		<result property="storageSpecification" column="storage_specification"/>
+		<result property="subchainType" column="subchain_type"/>
     </resultMap>
 
 	<select id="queryList" resultType="moac.ipfs.modules.back.subchain.entity.SubchainEntity">
@@ -55,4 +57,15 @@
 		limit 0,1
 	</select>
 
+	<select id="querySubList" resultType="string">
+		select subchain_address from tb_subchain_list
+	</select>
+
+	<select id="insertSubList" parameterType="string">
+		INSERT INTO tb_subchain_list (subchain_address) VALUES (#{subchainAddress})
+	</select>
+
+	<select id="deleteSubList" parameterType="string">
+		delete from tb_subchain_list where subchain_address = #{subchainAddress}
+	</select>
 </mapper>

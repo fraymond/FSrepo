@@ -31,5 +31,22 @@ public interface SubchainDao extends BaseMapper<SubchainEntity> {
      * @return
      */
     SubchainEntity queryAddFileList(Map<String, Object> map);
-	
+
+    /**
+     * 查询缓存存储子链
+     * @return
+     */
+    List<String> querySubList();
+
+    /**
+     * 新增缓存存储子链
+     * @return
+     */
+    void insertSubList(String subchainAddress);
+
+    /**
+     * 删除缓存存储子链
+     * @return
+     */
+    void deleteSubList(String subchainAddress);
 }

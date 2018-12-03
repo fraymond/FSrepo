@@ -8,6 +8,7 @@ import moac.ipfs.common.httputils.OkHttpClients;
 import moac.ipfs.common.httputils.OkHttpParam;
 import moac.ipfs.common.httputils.OkhttpResult;
 import moac.ipfs.common.utils.Constant;
+import moac.ipfs.common.utils.Utils;
 import moac.ipfs.modules.back.subchain.entity.SubchainLogEntity;
 import moac.ipfs.modules.back.subchain.service.SubchainLogService;
 import moac.ipfs.modules.back.sys.entity.SysUserEntity;
@@ -15,6 +16,8 @@ import moac.ipfs.modules.back.sys.service.SysConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,17 +47,19 @@ public class SubchainServiceImpl extends ServiceImpl<SubchainDao, SubchainEntity
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void add(SubchainEntity subchain,SysUserEntity sysUserEntity) {
 		SubchainEntity subchainEntity = this.selectOne(new EntityWrapper<SubchainEntity>().eq("subchain_address",subchain.getSubchainAddress()));
 		if (subchainEntity != null){
 			throw new RRException("已存在此存储子链！");
 		}
+		Long subchainSize = Utils.formatFileSize(subchain.getStorageSpecification());
 		subchain.setSysAddress(sysUserEntity.getUsername());
 		OkHttpParam okHttpParam = new OkHttpParam();
 		okHttpParam.setApiUrl(Constant.ADDIPFS_URL);
 		Map<String, String> map = new HashMap<>(16);
 		map.put("subchainAddress", subchain.getSubchainAddress());
-		map.put("subchainSize", String.valueOf(subchain.getSubchainSize()));
+		map.put("subchainSize", String.valueOf(subchainSize));
 		map.put("password",sysConfigService.getValue("password"));
 		map.put("keyStore",sysConfigService.getValue("keyStore"));
 		map.put("address",sysConfigService.getValue("address"));
@@ -67,7 +72,14 @@ public class SubchainServiceImpl extends ServiceImpl<SubchainDao, SubchainEntity
 				throw new RRException("新增存储子链错误!");
 			}
 			JSONObject jsonObject = json.getJSONObject("resultData");
+			subchain.setSubchainSize(new BigDecimal(subchainSize));
 			this.insert(subchain);
+			/**
+			 * 增加平台总存储空间
+			 */
+			String totalStorageSpace = sysConfigService.getValue("totalStorageSpace");
+			totalStorageSpace =  String.valueOf(Long.valueOf(totalStorageSpace)+subchainSize);
+			sysConfigService.updateValueByKey("totalStorageSpace",totalStorageSpace);
 			/**
 			 * 增加操作日志
 			 */
@@ -149,6 +161,11 @@ public class SubchainServiceImpl extends ServiceImpl<SubchainDao, SubchainEntity
 			e.printStackTrace();
 			throw new RRException("同步存储子链错误!");
 		}
+	}
+
+	@Override
+	public List<String> querySubList() {
+		return subchainDao.querySubList();
 	}
 
 }

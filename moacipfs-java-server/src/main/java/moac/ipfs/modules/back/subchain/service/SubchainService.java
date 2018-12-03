@@ -47,4 +47,5 @@ public interface SubchainService extends IService<SubchainEntity>{
 	 */
     void synService(SysUserEntity sysUserEntity);
 
+	List<String> querySubList();
 }

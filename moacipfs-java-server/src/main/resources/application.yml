@@ -11,7 +11,7 @@ server:
 spring:
     # 环境 dev|test|prod
     profiles:
-        active: prod
+        active: test
     # jackson时间格式化
     jackson:
         time-zone: GMT+8
@@ -82,3 +82,5 @@ myCfg:
     ignoreLogin : true
     # 测试用户id
     testUserId : 1
+    # 存储标记
+    saveFlag : false

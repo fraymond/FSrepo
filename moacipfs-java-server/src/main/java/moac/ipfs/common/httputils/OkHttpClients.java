@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class OkHttpClients {
     public static Logger logger = LoggerFactory.getLogger(OkHttpClients.class);
 
-    public static final String SYNCHRONIZE = "Synchronize";
+    public static final String SYNCHRONIZE = "synchronize";
     public static final String ASYNCHRONOUS = "asynchronous";
 
     /**

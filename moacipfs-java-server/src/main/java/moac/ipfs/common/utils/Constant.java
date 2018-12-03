@@ -92,40 +92,64 @@ public class Constant {
     public static final String PLAINTEXTPRIVATEKEY_TYPE = "PLAINTEXTPRIVATEKEY_TYPE";
 
     /**
-     * baseUrl
+     * 线上baseUrl
      */
-    public static final String CREATE_base_URL = "http://47.107.99.26:8888/";
+    public static final String BASE_URL = "http://47.107.99.26:8888/";
+    /**
+     *本地测试baseUrl
+     */
+//    public static final String BASE_URL = "http://192.168.1.17:8888/";
+    /**
+     *查询首页数据
+     */
+    public static final String QUERY_HONEDATA_URL = BASE_URL + "queryHomeData";
     /**
      *创建地址
      */
-    public static final String CREATE_ADDRESS_URL = CREATE_base_URL + "createAddress";
+    public static final String CREATE_ADDRESS_URL = BASE_URL + "createAddress";
     /**
      *导入地址
      */
-    public static final String IMPORT_ADDRESS_URL = CREATE_base_URL + "importAddress";
+    public static final String IMPORT_ADDRESS_URL = BASE_URL + "importAddress";
     /**
      *查询文件
      */
-    public static final String READFILE_URL = CREATE_base_URL + "readFile";
+    public static final String READFILE_URL = BASE_URL + "readFile";
     /**
      *删除文件
      */
-    public static final String REMOVEFILE_URL = CREATE_base_URL + "removeFile";
+    public static final String REMOVEFILE_URL = BASE_URL + "removeFile";
     /**
      *新增文件
      */
-    public static final String SAVEFILE_URL = CREATE_base_URL + "saveFile";
+    public static final String SAVEFILE_URL = BASE_URL + "saveFile";
+    /**
+     *主链ERC20交易
+     */
+    public static final String MAINCHAINTRANSACTION_URL = BASE_URL + "erc20Tx";
+    /**
+     *子链coin交易
+     */
+    public static final String SUBCHAINTRANSACTION_URL = BASE_URL + "subChainTransaction";
+    /**
+     *子链coin兑换FST
+     */
+    public static final String SUBCHAINCOINTOFST_URL = BASE_URL + "subChainCoinToFst";
+    /**
+     *FST兑换子链coin
+     */
+    public static final String FSTTOSUBCHAINCOIN_URL = BASE_URL + "fstToSubChainCoin";
     /**
      *删除存储子链
      */
-    public static final String DELETEIPFS_URL = CREATE_base_URL + "deleteIpfs";
+    public static final String DELETEIPFS_URL = BASE_URL + "deleteIpfs";
     /**
      *新增存储子链
      */
-    public static final String ADDIPFS_URL = CREATE_base_URL + "addIpfs";
+    public static final String ADDIPFS_URL = BASE_URL + "addIpfs";
     /**
      *同步所有存储子链
      */
-    public static final String GETALLIPFSINFO_URL = CREATE_base_URL + "getAllIpfsInfo";
+    public static final String GETALLIPFSINFO_URL = BASE_URL + "getAllIpfsInfo";
 
 }

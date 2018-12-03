@@ -4,6 +4,7 @@ import com.googlecode.jsonrpc4j.Base64;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -201,22 +202,67 @@ public class Utils {
         return md5Str;
     }
 
-    public static String getDataSize(long size) {
-        DecimalFormat formater = new DecimalFormat("####.00");
-        if (size < 1024) {
-            return size + "bytes";
-        } else if (size < 1024 * 1024) {
-            float kbsize = size / 1024f;
-            return formater.format(kbsize) + "KB";
-        } else if (size < 1024 * 1024 * 1024) {
-            float mbsize = size / 1024f / 1024f;
-            return formater.format(mbsize) + "MB";
-        } else if (size < 1024 * 1024 * 1024 * 1024) {
-            float gbsize = size / 1024f / 1024f / 1024f;
-            return formater.format(gbsize) + "GB";
-        } else {
-            return "size: error";
+    public static String convertFileSize(long size) {
+        long kb = 1024;
+        long mb = kb * 1024;
+        long gb = mb * 1024;
 
+        if (size >= gb) {
+            return String.format("%.1f GB", (float) size / gb);
+        } else if (size >= mb) {
+            float f = (float) size / mb;
+            return String.format(f > 100 ? "%.0f MB" : "%.1f MB", f);
+        } else if (size >= kb) {
+            float f = (float) size / kb;
+            return String.format(f > 100 ? "%.0f KB" : "%.1f KB", f);
+        } else {
+            return String.format("%d B", size);
         }
     }
+
+    /**
+     * 转换文件大小
+     *
+     * @param fileS
+     * @return
+     */
+    public static String formatFileSize(long fileS) {
+        DecimalFormat df = new DecimalFormat("#.00");
+        String fileSizeString = "";
+        String wrongSize = "0B";
+        if (fileS == 0) {
+            return wrongSize;
+        }
+        if (fileS < 1024) {
+            fileSizeString = df.format((double) fileS) + "B";
+        } else if (fileS < 1048576) {
+            fileSizeString = df.format((double) fileS / 1024) + "KB";
+        } else if (fileS < 1073741824) {
+            fileSizeString = df.format((double) fileS / 1048576) + "MB";
+        } else if (fileS < 1099511627776L){
+            fileSizeString = df.format((double) fileS / 1073741824) + "GB";
+        } else {
+            fileSizeString = df.format((double) fileS / 1099511627776L) + "TB";
+        }
+        return fileSizeString;
+    }
+
+    /**
+     * 字符串转文件大小
+     *
+     * @param fileSize
+     * @return
+     */
+    public static long formatFileSize(String fileSize) {
+        long result = 0L;
+        if (fileSize.contains("G")){
+            fileSize = fileSize.replaceAll("G","");
+            result = Long.valueOf(fileSize) * 1073741824L;
+        }else if (fileSize.contains("T")){
+            fileSize = fileSize.replaceAll("T","");
+            result = Long.valueOf(fileSize) * 1073741824 * 1024L;
+        }
+        return result;
+    }
+
 }

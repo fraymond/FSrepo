@@ -1,8 +1,8 @@
 swagger: '2.0'
 info:
-  description: moacipfs是一个基于区块链的，前后端分离的Java存储平台，所有文件都存储上链
+  description: moacipfs区块链存储
   version: 1.0.0
-  title: moacipfs区块链存储平台
+  title: fileStorm
 
 basePath: /moacipfs
 
@@ -1011,7 +1011,6 @@ paths:
               schedule:
                 description: 定时任务日志信息
                 $ref: '#/definitions/ScheduleJobLogEntity'
-
 #定义数据模型
 definitions:
   R:
@@ -1064,6 +1063,20 @@ definitions:
         type: string
       newPassword:
         description: 新密码
+        type: string
+  AuditClubForm:
+    type: object
+    properties:
+      teamId:
+        description: 俱乐部id
+        type: integer
+        format: int64
+      type:
+        description: 1通过 2不通过
+        type: integer
+        format: int64
+      reason:
+        description: 不通过理由
         type: string
   SysUserEntity:
     type: object
@@ -1633,6 +1646,7 @@ definitions:
         type: string
         format: date-time
   ScheduleJobLogEntityList:
+
     type: object
     properties:
       code:
