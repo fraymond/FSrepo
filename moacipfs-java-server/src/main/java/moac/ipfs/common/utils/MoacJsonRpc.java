@@ -37,14 +37,14 @@ public class MoacJsonRpc {
     /**
      * 生产
      */
-//    private static final String MAIN_CHAIN_ADDRESS = "0xd609C9B69EFed83F9eD00486B06198B3b3FD5208";
-//    private static final String SUB_CHAIN_ADDRESS = "0x24e911d31d82f3482dd36451077d6f481da5167d";
+//    private static final String MAIN_CHAIN_ADDRESS = "";
+//    private static final String SUB_CHAIN_ADDRESS = "";
 //    private static final Integer NET_WORK_TYPE = 101;
     /**
      * 测试
      */
-    private static final String MAIN_CHAIN_ADDRESS = "0xd609C9B69EFed83F9eD00486B06198B3b3FD5208";
-    private static final String SUB_CHAIN_ADDRESS = "0x24e911d31d82f3482dd36451077d6f481da5167d";
+    private static final String MAIN_CHAIN_ADDRESS = "";
+    private static final String SUB_CHAIN_ADDRESS = "";
     private static final Integer NET_WORK_TYPE = 101;
 
 
@@ -53,29 +53,7 @@ public class MoacJsonRpc {
      * @return
      */
     public static String queryMainChainBalance(String addrss){
-        String result = null;
-        JSONObject json = new JSONObject();
-        Map<String,Object> map = new HashMap<>(16);
-        map.put("to",MAIN_CHAIN_ADDRESS);
-        map.put("data","0x70a08231000000000000000000000000"+ addrss.substring(2));
-        List<Object> params = new ArrayList<>(16);
-        params.add(map);
-        params.add("latest");
-        json.put("method", "mc_call");
-        json.put("params", params);
-        json.put("id", NET_WORK_TYPE);
-        try {
-            result = post(MAIN_CHAIN_URL,json);
-            org.json.JSONObject json_result = new org.json.JSONObject(result);
-            if(json_result.getString("result") != null){
-                result = json_result.getString("result");
-            }else{
-                throw new RRException("查询主链ERC20余额失败!");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return result;
+       
     }
 
     /**
@@ -83,27 +61,7 @@ public class MoacJsonRpc {
      * @return
      */
     public static String querySubChainBalance(String addrss){
-        String result = null;
-        JSONObject json = new JSONObject();
-        Map<String,Object> map = new HashMap<>(16);
-        map.put("subChainAddr", SUB_CHAIN_ADDRESS);
-        map.put("sender", addrss);
-        json.put("method", "ScsRPCMethod.GetBalance");
-        json.put("params", map);
-        json.put("id", NET_WORK_TYPE);
-        json.put("jsonrpc","2.0");
-        try {
-            result = post(SUB_CHAIN_URL,json);
-            org.json.JSONObject json_result = new org.json.JSONObject(result);
-            if(json_result.getString("result") != null){
-                result = json_result.getString("result");
-            }else{
-                throw new RRException("查询子链coin余额失败!");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return result;
+       
     }
 
     /**
@@ -111,26 +69,7 @@ public class MoacJsonRpc {
      * @return
      */
     public static String queryMainChainBlock(){
-        String result = null;
-        JSONObject json = new JSONObject();
-        Map<String,Object> map = new HashMap<>(16);
-        List<Object> params = new ArrayList<>(16);
-        params.add(map);
-        json.put("method", "mc_blockNumber");
-        json.put("params", params);
-        json.put("id", NET_WORK_TYPE);
-        try {
-            result = post(MAIN_CHAIN_URL,json);
-            org.json.JSONObject json_result = new org.json.JSONObject(result);
-            if(json_result.getString("result") != null){
-                result = json_result.getString("result");
-            }else{
-                throw new RRException("查询主链块高失败!");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return result;
+       
     }
 
     /**
@@ -138,28 +77,7 @@ public class MoacJsonRpc {
      * @return
      */
     public static String querySubChainBlock(){
-        String result = null;
-        JSONObject json = new JSONObject();
-        Map<String,Object> map = new HashMap<>(16);
-        List<Object> params = new ArrayList<>(16);
-        map.put("SubChainAddr", SUB_CHAIN_ADDRESS);
-        params.add(map);
-        json.put("method", "ScsRPCMethod.GetBlockNumber");
-        json.put("params", map);
-        json.put("id", NET_WORK_TYPE);
-        json.put("jsonrpc","2.0");
-        try {
-            result = post(SUB_CHAIN_URL,json);
-            org.json.JSONObject json_result = new org.json.JSONObject(result);
-            if(String.valueOf(json_result.get("result")) != null){
-                result = String.valueOf(json_result.get("result"));
-            }else{
-                throw new RRException("查询子链块高失败!");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return result;
+       
     }
 
     //post请求
