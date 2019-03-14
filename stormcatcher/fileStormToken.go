@@ -13,7 +13,7 @@ import (
 )
 
 // MainABI is the input ABI used to generate the binding from.
-const MainABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"shardMapping\",\"outputs\":[{\"name\":\"shardId\",\"type\":\"uint256\"},{\"name\":\"nodeCount\",\"type\":\"uint256\"},{\"name\":\"weight\",\"type\":\"uint256\"},{\"name\":\"size\",\"type\":\"uint256\"},{\"name\":\"availableSize\",\"type\":\"uint256\"},{\"name\":\"percentage\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recentlyUsedList\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"shardCount\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"addrs\",\"type\":\"address[]\"},{\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"have\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"pos\",\"type\":\"uint256\"},{\"name\":\"tosend\",\"type\":\"address[]\"},{\"name\":\"amount\",\"type\":\"uint256[]\"},{\"name\":\"times\",\"type\":\"uint256[]\"}],\"name\":\"postFlush\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"admin\",\"type\":\"address\"}],\"name\":\"removeAdmin\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"recentlyUsed\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"fileMapping\",\"outputs\":[{\"name\":\"fileId\",\"type\":\"uint256\"},{\"name\":\"fileHash\",\"type\":\"string\"},{\"name\":\"fileName\",\"type\":\"string\"},{\"name\":\"fileSize\",\"type\":\"uint256\"},{\"name\":\"fileOwner\",\"type\":\"address\"},{\"name\":\"createTime\",\"type\":\"uint256\"},{\"name\":\"verifiedCount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"fileList\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"shardNodeList\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newlist\",\"type\":\"address[]\"}],\"name\":\"updateNodeList\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getAllShards\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"num\",\"type\":\"uint256\"}],\"name\":\"setBlockVerificationInterval\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"admins\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"fileCount\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddr\",\"type\":\"address\"},{\"name\":\"pos\",\"type\":\"uint256\"}],\"name\":\"getRedeemMapping\",\"outputs\":[{\"name\":\"redeemingAddr\",\"type\":\"address[]\"},{\"name\":\"redeemingAmt\",\"type\":\"uint256[]\"},{\"name\":\"redeemingtime\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"removeFromAddressArray\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getCurNodeList\",\"outputs\":[{\"name\":\"nodeList\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"curNodeList\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddr\",\"type\":\"address\"}],\"name\":\"getEnterRecords\",\"outputs\":[{\"name\":\"enterAmt\",\"type\":\"uint256[]\"},{\"name\":\"entertime\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"shardList\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"array\",\"type\":\"uint256[]\"},{\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"removeFromArray\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"verifyGroupId\",\"type\":\"address\"},{\"name\":\"verifyNodeId\",\"type\":\"address\"},{\"name\":\"votingNodeId\",\"type\":\"address\"},{\"name\":\"blockNumber\",\"type\":\"uint256\"},{\"name\":\"fileHash\",\"type\":\"string\"},{\"name\":\"shardId\",\"type\":\"uint256\"}],\"name\":\"voteVerifyTransaction\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"fileId\",\"type\":\"uint256\"},{\"name\":\"ipfsId\",\"type\":\"string\"}],\"name\":\"readFile\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"verifyGroupId\",\"type\":\"address\"},{\"name\":\"verifyNodeId\",\"type\":\"address\"},{\"name\":\"blockNumber\",\"type\":\"uint256\"},{\"name\":\"fileHash\",\"type\":\"string\"},{\"name\":\"shardId\",\"type\":\"uint256\"}],\"name\":\"submitVerifyTransaction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"admin\",\"type\":\"address\"}],\"name\":\"addAdmin\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"val1\",\"type\":\"uint256\"},{\"name\":\"val2\",\"type\":\"uint256\"}],\"name\":\"min\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"fileHash\",\"type\":\"string\"},{\"name\":\"fileName\",\"type\":\"string\"},{\"name\":\"fileSize\",\"type\":\"uint256\"},{\"name\":\"createTime\",\"type\":\"uint256\"}],\"name\":\"addFile\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"scsId\",\"type\":\"address\"},{\"name\":\"beneficiary\",\"type\":\"address\"},{\"name\":\"weight\",\"type\":\"uint256\"}],\"name\":\"addNode\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"redeemFromMicroChain\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"fileHash\",\"type\":\"string\"},{\"name\":\"fileName\",\"type\":\"string\"},{\"name\":\"fileSize\",\"type\":\"uint256\"},{\"name\":\"createTime\",\"type\":\"uint256\"},{\"name\":\"ipfsId\",\"type\":\"string\"}],\"name\":\"addFile\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"shardSize\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"weight\",\"type\":\"uint256\"}],\"name\":\"addShard\",\"outputs\":[{\"name\":\"shardId\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"fileId\",\"type\":\"uint256\"}],\"name\":\"removeFile\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"myAddr\",\"type\":\"address\"}],\"name\":\"getMyFileHashes\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"shardId\",\"type\":\"uint256\"}],\"name\":\"getAllFilesByShard\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"scsId\",\"type\":\"address\"}],\"name\":\"removeNode\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"unassignedNoteList\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"setAwardAmount\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"size\",\"type\":\"uint256\"}],\"name\":\"setShardSize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"weight\",\"type\":\"uint256\"},{\"name\":\"size\",\"type\":\"uint256\"}],\"name\":\"setCapacity\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"fileId\",\"type\":\"uint256\"}],\"name\":\"getFileById\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"},{\"name\":\"\",\"type\":\"string\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"address\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"capacityMapping\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"enterPos\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"nodeShardMapping\",\"outputs\":[{\"name\":\"shardId\",\"type\":\"uint256\"},{\"name\":\"nodeCount\",\"type\":\"uint256\"},{\"name\":\"weight\",\"type\":\"uint256\"},{\"name\":\"size\",\"type\":\"uint256\"},{\"name\":\"availableSize\",\"type\":\"uint256\"},{\"name\":\"percentage\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"nodeMapping\",\"outputs\":[{\"name\":\"shardId\",\"type\":\"uint256\"},{\"name\":\"scsId\",\"type\":\"address\"},{\"name\":\"beneficiary\",\"type\":\"address\"},{\"name\":\"size\",\"type\":\"uint256\"},{\"name\":\"lastVerifiedBlock\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"beneficiary\",\"type\":\"address\"}],\"name\":\"award\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"verifyGroupMapping\",\"outputs\":[{\"name\":\"scsId\",\"type\":\"address\"},{\"name\":\"verifyNodeId\",\"type\":\"address\"},{\"name\":\"blockNumber\",\"type\":\"uint256\"},{\"name\":\"fileHash\",\"type\":\"string\"},{\"name\":\"totalCount\",\"type\":\"uint256\"},{\"name\":\"votedCount\",\"type\":\"uint256\"},{\"name\":\"affirmCount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"}]"
+const MainABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"shardMapping\",\"outputs\":[{\"name\":\"shardId\",\"type\":\"uint256\"},{\"name\":\"nodeCount\",\"type\":\"uint256\"},{\"name\":\"weight\",\"type\":\"uint256\"},{\"name\":\"size\",\"type\":\"uint256\"},{\"name\":\"availableSize\",\"type\":\"uint256\"},{\"name\":\"percentage\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recentlyUsedList\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"shardCount\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"addrs\",\"type\":\"address[]\"},{\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"have\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"pos\",\"type\":\"uint256\"},{\"name\":\"tosend\",\"type\":\"address[]\"},{\"name\":\"amount\",\"type\":\"uint256[]\"},{\"name\":\"times\",\"type\":\"uint256[]\"}],\"name\":\"postFlush\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"fileHash\",\"type\":\"string\"},{\"name\":\"fileName\",\"type\":\"string\"},{\"name\":\"fileSize\",\"type\":\"uint256\"},{\"name\":\"createTime\",\"type\":\"uint256\"},{\"name\":\"shardId\",\"type\":\"uint256\"}],\"name\":\"addFile\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"admin\",\"type\":\"address\"}],\"name\":\"removeAdmin\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"hardDriveMapping\",\"outputs\":[{\"name\":\"scsId\",\"type\":\"address\"},{\"name\":\"weight\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"recentlyUsed\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"fileMapping\",\"outputs\":[{\"name\":\"fileId\",\"type\":\"uint256\"},{\"name\":\"fileHash\",\"type\":\"string\"},{\"name\":\"fileName\",\"type\":\"string\"},{\"name\":\"fileSize\",\"type\":\"uint256\"},{\"name\":\"fileOwner\",\"type\":\"address\"},{\"name\":\"createTime\",\"type\":\"uint256\"},{\"name\":\"verifiedCount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"driveId\",\"type\":\"address\"},{\"name\":\"scsId\",\"type\":\"address\"},{\"name\":\"weight\",\"type\":\"uint256\"}],\"name\":\"updateHardDrive\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"nodeBeneficiaryList\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"fileList\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"shardNodeList\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"nodeBeneficiaryMapping\",\"outputs\":[{\"name\":\"scsId\",\"type\":\"address\"},{\"name\":\"beneficiary\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newlist\",\"type\":\"address[]\"}],\"name\":\"updateNodeList\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getAllShards\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"num\",\"type\":\"uint256\"}],\"name\":\"setBlockVerificationInterval\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"admins\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"fileCount\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddr\",\"type\":\"address\"},{\"name\":\"pos\",\"type\":\"uint256\"}],\"name\":\"getRedeemMapping\",\"outputs\":[{\"name\":\"redeemingAddr\",\"type\":\"address[]\"},{\"name\":\"redeemingAmt\",\"type\":\"uint256[]\"},{\"name\":\"redeemingtime\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"removeFromAddressArray\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"weight\",\"type\":\"uint256\"}],\"name\":\"pubAddShard\",\"outputs\":[{\"name\":\"shardId\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"removeFromAddressArray2\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getCurNodeList\",\"outputs\":[{\"name\":\"nodeList\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"curNodeList\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddr\",\"type\":\"address\"}],\"name\":\"getEnterRecords\",\"outputs\":[{\"name\":\"enterAmt\",\"type\":\"uint256[]\"},{\"name\":\"entertime\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"scsId\",\"type\":\"address\"},{\"name\":\"status\",\"type\":\"uint256\"}],\"name\":\"updateScsMsg\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"shardList\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"verifyGroupId\",\"type\":\"address\"},{\"name\":\"verifyNodeId\",\"type\":\"address\"},{\"name\":\"votingNodeId\",\"type\":\"address\"},{\"name\":\"blockNumber\",\"type\":\"uint256\"},{\"name\":\"fileHash\",\"type\":\"string\"},{\"name\":\"shardId\",\"type\":\"uint256\"}],\"name\":\"voteVerifyTransaction\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"fileId\",\"type\":\"uint256\"},{\"name\":\"ipfsId\",\"type\":\"string\"}],\"name\":\"readFile\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"verifyGroupId\",\"type\":\"address\"},{\"name\":\"verifyNodeId\",\"type\":\"address\"},{\"name\":\"blockNumber\",\"type\":\"uint256\"},{\"name\":\"fileHash\",\"type\":\"string\"},{\"name\":\"shardId\",\"type\":\"uint256\"}],\"name\":\"submitVerifyTransaction\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"admin\",\"type\":\"address\"}],\"name\":\"addAdmin\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"val1\",\"type\":\"uint256\"},{\"name\":\"val2\",\"type\":\"uint256\"}],\"name\":\"min\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"scsId\",\"type\":\"address\"},{\"name\":\"beneficiary\",\"type\":\"address\"},{\"name\":\"weight\",\"type\":\"uint256\"}],\"name\":\"addNode\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"redeemFromMicroChain\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"doAward\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"shardSize\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"fileId\",\"type\":\"uint256\"}],\"name\":\"removeFile\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"myAddr\",\"type\":\"address\"}],\"name\":\"getMyFileHashes\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"shardId\",\"type\":\"uint256\"}],\"name\":\"getAllFilesByShard\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"fileHash\",\"type\":\"string\"},{\"name\":\"fileName\",\"type\":\"string\"},{\"name\":\"fileSize\",\"type\":\"uint256\"},{\"name\":\"createTime\",\"type\":\"uint256\"},{\"name\":\"ipfsId\",\"type\":\"string\"},{\"name\":\"shardId\",\"type\":\"uint256\"}],\"name\":\"addFile\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"scsId\",\"type\":\"address\"}],\"name\":\"removeNode\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"beneficiary\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"pay\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"unassignedNoteList\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"setAwardAmount\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"size\",\"type\":\"uint256\"}],\"name\":\"setShardSize\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"weight\",\"type\":\"uint256\"},{\"name\":\"size\",\"type\":\"uint256\"}],\"name\":\"setCapacity\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"fileId\",\"type\":\"uint256\"}],\"name\":\"getFileById\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"},{\"name\":\"\",\"type\":\"string\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"address\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"capacityMapping\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"removeFromArray\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"enterPos\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"nodeShardMapping\",\"outputs\":[{\"name\":\"shardId\",\"type\":\"uint256\"},{\"name\":\"nodeCount\",\"type\":\"uint256\"},{\"name\":\"weight\",\"type\":\"uint256\"},{\"name\":\"size\",\"type\":\"uint256\"},{\"name\":\"availableSize\",\"type\":\"uint256\"},{\"name\":\"percentage\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"nodeMapping\",\"outputs\":[{\"name\":\"shardId\",\"type\":\"uint256\"},{\"name\":\"scsId\",\"type\":\"address\"},{\"name\":\"beneficiary\",\"type\":\"address\"},{\"name\":\"size\",\"type\":\"uint256\"},{\"name\":\"lastVerifiedBlock\",\"type\":\"uint256\"},{\"name\":\"balance\",\"type\":\"uint256\"},{\"name\":\"status\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"verifyGroupMapping\",\"outputs\":[{\"name\":\"scsId\",\"type\":\"address\"},{\"name\":\"verifyNodeId\",\"type\":\"address\"},{\"name\":\"blockNumber\",\"type\":\"uint256\"},{\"name\":\"fileHash\",\"type\":\"string\"},{\"name\":\"totalCount\",\"type\":\"uint256\"},{\"name\":\"votedCount\",\"type\":\"uint256\"},{\"name\":\"affirmCount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"}]"
 
 // Main is an auto generated Go binding around an MoacNode contract.
 type Main struct {
@@ -572,6 +572,42 @@ func (_Main *MainCallerSession) GetRedeemMapping(userAddr common.Address, pos *b
 	return _Main.Contract.GetRedeemMapping(&_Main.CallOpts, userAddr, pos)
 }
 
+// HardDriveMapping is a free data retrieval call binding the contract method 0x194976c1.
+//
+// Solidity: function hardDriveMapping( address) constant returns(scsId address, weight uint256)
+func (_Main *MainCaller) HardDriveMapping(opts *bind.CallOpts, arg0 common.Address) (struct {
+	ScsId  common.Address
+	Weight *big.Int
+}, error) {
+	ret := new(struct {
+		ScsId  common.Address
+		Weight *big.Int
+	})
+	out := ret
+	err := _Main.contract.Call(opts, out, "hardDriveMapping", arg0)
+	return *ret, err
+}
+
+// HardDriveMapping is a free data retrieval call binding the contract method 0x194976c1.
+//
+// Solidity: function hardDriveMapping( address) constant returns(scsId address, weight uint256)
+func (_Main *MainSession) HardDriveMapping(arg0 common.Address) (struct {
+	ScsId  common.Address
+	Weight *big.Int
+}, error) {
+	return _Main.Contract.HardDriveMapping(&_Main.CallOpts, arg0)
+}
+
+// HardDriveMapping is a free data retrieval call binding the contract method 0x194976c1.
+//
+// Solidity: function hardDriveMapping( address) constant returns(scsId address, weight uint256)
+func (_Main *MainCallerSession) HardDriveMapping(arg0 common.Address) (struct {
+	ScsId  common.Address
+	Weight *big.Int
+}, error) {
+	return _Main.Contract.HardDriveMapping(&_Main.CallOpts, arg0)
+}
+
 // Have is a free data retrieval call binding the contract method 0x10ba0499.
 //
 // Solidity: function have(addrs address[], addr address) constant returns(bool)
@@ -598,15 +634,83 @@ func (_Main *MainCallerSession) Have(addrs []common.Address, addr common.Address
 	return _Main.Contract.Have(&_Main.CallOpts, addrs, addr)
 }
 
+// NodeBeneficiaryList is a free data retrieval call binding the contract method 0x23c5cf8e.
+//
+// Solidity: function nodeBeneficiaryList( uint256) constant returns(address)
+func (_Main *MainCaller) NodeBeneficiaryList(opts *bind.CallOpts, arg0 *big.Int) (common.Address, error) {
+	var (
+		ret0 = new(common.Address)
+	)
+	out := ret0
+	err := _Main.contract.Call(opts, out, "nodeBeneficiaryList", arg0)
+	return *ret0, err
+}
+
+// NodeBeneficiaryList is a free data retrieval call binding the contract method 0x23c5cf8e.
+//
+// Solidity: function nodeBeneficiaryList( uint256) constant returns(address)
+func (_Main *MainSession) NodeBeneficiaryList(arg0 *big.Int) (common.Address, error) {
+	return _Main.Contract.NodeBeneficiaryList(&_Main.CallOpts, arg0)
+}
+
+// NodeBeneficiaryList is a free data retrieval call binding the contract method 0x23c5cf8e.
+//
+// Solidity: function nodeBeneficiaryList( uint256) constant returns(address)
+func (_Main *MainCallerSession) NodeBeneficiaryList(arg0 *big.Int) (common.Address, error) {
+	return _Main.Contract.NodeBeneficiaryList(&_Main.CallOpts, arg0)
+}
+
+// NodeBeneficiaryMapping is a free data retrieval call binding the contract method 0x2d66f1e1.
+//
+// Solidity: function nodeBeneficiaryMapping( address) constant returns(scsId address, beneficiary address, value uint256)
+func (_Main *MainCaller) NodeBeneficiaryMapping(opts *bind.CallOpts, arg0 common.Address) (struct {
+	ScsId       common.Address
+	Beneficiary common.Address
+	Value       *big.Int
+}, error) {
+	ret := new(struct {
+		ScsId       common.Address
+		Beneficiary common.Address
+		Value       *big.Int
+	})
+	out := ret
+	err := _Main.contract.Call(opts, out, "nodeBeneficiaryMapping", arg0)
+	return *ret, err
+}
+
+// NodeBeneficiaryMapping is a free data retrieval call binding the contract method 0x2d66f1e1.
+//
+// Solidity: function nodeBeneficiaryMapping( address) constant returns(scsId address, beneficiary address, value uint256)
+func (_Main *MainSession) NodeBeneficiaryMapping(arg0 common.Address) (struct {
+	ScsId       common.Address
+	Beneficiary common.Address
+	Value       *big.Int
+}, error) {
+	return _Main.Contract.NodeBeneficiaryMapping(&_Main.CallOpts, arg0)
+}
+
+// NodeBeneficiaryMapping is a free data retrieval call binding the contract method 0x2d66f1e1.
+//
+// Solidity: function nodeBeneficiaryMapping( address) constant returns(scsId address, beneficiary address, value uint256)
+func (_Main *MainCallerSession) NodeBeneficiaryMapping(arg0 common.Address) (struct {
+	ScsId       common.Address
+	Beneficiary common.Address
+	Value       *big.Int
+}, error) {
+	return _Main.Contract.NodeBeneficiaryMapping(&_Main.CallOpts, arg0)
+}
+
 // NodeMapping is a free data retrieval call binding the contract method 0xfbd1b4ce.
 //
-// Solidity: function nodeMapping( address) constant returns(shardId uint256, scsId address, beneficiary address, size uint256, lastVerifiedBlock uint256)
+// Solidity: function nodeMapping( address) constant returns(shardId uint256, scsId address, beneficiary address, size uint256, lastVerifiedBlock uint256, balance uint256, status uint256)
 func (_Main *MainCaller) NodeMapping(opts *bind.CallOpts, arg0 common.Address) (struct {
 	ShardId           *big.Int
 	ScsId             common.Address
 	Beneficiary       common.Address
 	Size              *big.Int
 	LastVerifiedBlock *big.Int
+	Balance           *big.Int
+	Status            *big.Int
 }, error) {
 	ret := new(struct {
 		ShardId           *big.Int
@@ -614,6 +718,8 @@ func (_Main *MainCaller) NodeMapping(opts *bind.CallOpts, arg0 common.Address) (
 		Beneficiary       common.Address
 		Size              *big.Int
 		LastVerifiedBlock *big.Int
+		Balance           *big.Int
+		Status            *big.Int
 	})
 	out := ret
 	err := _Main.contract.Call(opts, out, "nodeMapping", arg0)
@@ -622,26 +728,30 @@ func (_Main *MainCaller) NodeMapping(opts *bind.CallOpts, arg0 common.Address) (
 
 // NodeMapping is a free data retrieval call binding the contract method 0xfbd1b4ce.
 //
-// Solidity: function nodeMapping( address) constant returns(shardId uint256, scsId address, beneficiary address, size uint256, lastVerifiedBlock uint256)
+// Solidity: function nodeMapping( address) constant returns(shardId uint256, scsId address, beneficiary address, size uint256, lastVerifiedBlock uint256, balance uint256, status uint256)
 func (_Main *MainSession) NodeMapping(arg0 common.Address) (struct {
 	ShardId           *big.Int
 	ScsId             common.Address
 	Beneficiary       common.Address
 	Size              *big.Int
 	LastVerifiedBlock *big.Int
+	Balance           *big.Int
+	Status            *big.Int
 }, error) {
 	return _Main.Contract.NodeMapping(&_Main.CallOpts, arg0)
 }
 
 // NodeMapping is a free data retrieval call binding the contract method 0xfbd1b4ce.
 //
-// Solidity: function nodeMapping( address) constant returns(shardId uint256, scsId address, beneficiary address, size uint256, lastVerifiedBlock uint256)
+// Solidity: function nodeMapping( address) constant returns(shardId uint256, scsId address, beneficiary address, size uint256, lastVerifiedBlock uint256, balance uint256, status uint256)
 func (_Main *MainCallerSession) NodeMapping(arg0 common.Address) (struct {
 	ShardId           *big.Int
 	ScsId             common.Address
 	Beneficiary       common.Address
 	Size              *big.Int
 	LastVerifiedBlock *big.Int
+	Balance           *big.Int
+	Status            *big.Int
 }, error) {
 	return _Main.Contract.NodeMapping(&_Main.CallOpts, arg0)
 }
@@ -983,25 +1093,25 @@ func (_Main *MainTransactorSession) AddAdmin(admin common.Address) (*types.Trans
 	return _Main.Contract.AddAdmin(&_Main.TransactOpts, admin)
 }
 
-// AddFile is a paid mutator transaction binding the contract method 0x90414068.
+// AddFile is a paid mutator transaction binding the contract method 0xb2845929.
 //
-// Solidity: function addFile(fileHash string, fileName string, fileSize uint256, createTime uint256, ipfsId string) returns(uint256, uint256)
-func (_Main *MainTransactor) AddFile(opts *bind.TransactOpts, fileHash string, fileName string, fileSize *big.Int, createTime *big.Int, ipfsId string) (*types.Transaction, error) {
-	return _Main.contract.Transact(opts, "addFile", fileHash, fileName, fileSize, createTime, ipfsId)
+// Solidity: function addFile(fileHash string, fileName string, fileSize uint256, createTime uint256, ipfsId string, shardId uint256) returns(uint256)
+func (_Main *MainTransactor) AddFile(opts *bind.TransactOpts, fileHash string, fileName string, fileSize *big.Int, createTime *big.Int, ipfsId string, shardId *big.Int) (*types.Transaction, error) {
+	return _Main.contract.Transact(opts, "addFile", fileHash, fileName, fileSize, createTime, ipfsId, shardId)
 }
 
-// AddFile is a paid mutator transaction binding the contract method 0x90414068.
+// AddFile is a paid mutator transaction binding the contract method 0xb2845929.
 //
-// Solidity: function addFile(fileHash string, fileName string, fileSize uint256, createTime uint256, ipfsId string) returns(uint256, uint256)
-func (_Main *MainSession) AddFile(fileHash string, fileName string, fileSize *big.Int, createTime *big.Int, ipfsId string) (*types.Transaction, error) {
-	return _Main.Contract.AddFile(&_Main.TransactOpts, fileHash, fileName, fileSize, createTime, ipfsId)
+// Solidity: function addFile(fileHash string, fileName string, fileSize uint256, createTime uint256, ipfsId string, shardId uint256) returns(uint256)
+func (_Main *MainSession) AddFile(fileHash string, fileName string, fileSize *big.Int, createTime *big.Int, ipfsId string, shardId *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.AddFile(&_Main.TransactOpts, fileHash, fileName, fileSize, createTime, ipfsId, shardId)
 }
 
-// AddFile is a paid mutator transaction binding the contract method 0x90414068.
+// AddFile is a paid mutator transaction binding the contract method 0xb2845929.
 //
-// Solidity: function addFile(fileHash string, fileName string, fileSize uint256, createTime uint256, ipfsId string) returns(uint256, uint256)
-func (_Main *MainTransactorSession) AddFile(fileHash string, fileName string, fileSize *big.Int, createTime *big.Int, ipfsId string) (*types.Transaction, error) {
-	return _Main.Contract.AddFile(&_Main.TransactOpts, fileHash, fileName, fileSize, createTime, ipfsId)
+// Solidity: function addFile(fileHash string, fileName string, fileSize uint256, createTime uint256, ipfsId string, shardId uint256) returns(uint256)
+func (_Main *MainTransactorSession) AddFile(fileHash string, fileName string, fileSize *big.Int, createTime *big.Int, ipfsId string, shardId *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.AddFile(&_Main.TransactOpts, fileHash, fileName, fileSize, createTime, ipfsId, shardId)
 }
 
 // AddNode is a paid mutator transaction binding the contract method 0x841fd1db.
@@ -1025,46 +1135,25 @@ func (_Main *MainTransactorSession) AddNode(scsId common.Address, beneficiary co
 	return _Main.Contract.AddNode(&_Main.TransactOpts, scsId, beneficiary, weight)
 }
 
-// AddShard is a paid mutator transaction binding the contract method 0x97319ed2.
+// DoAward is a paid mutator transaction binding the contract method 0x8c6e1ca9.
 //
-// Solidity: function addShard(weight uint256) returns(shardId uint256)
-func (_Main *MainTransactor) AddShard(opts *bind.TransactOpts, weight *big.Int) (*types.Transaction, error) {
-	return _Main.contract.Transact(opts, "addShard", weight)
+// Solidity: function doAward() returns()
+func (_Main *MainTransactor) DoAward(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Main.contract.Transact(opts, "doAward")
 }
 
-// AddShard is a paid mutator transaction binding the contract method 0x97319ed2.
+// DoAward is a paid mutator transaction binding the contract method 0x8c6e1ca9.
 //
-// Solidity: function addShard(weight uint256) returns(shardId uint256)
-func (_Main *MainSession) AddShard(weight *big.Int) (*types.Transaction, error) {
-	return _Main.Contract.AddShard(&_Main.TransactOpts, weight)
+// Solidity: function doAward() returns()
+func (_Main *MainSession) DoAward() (*types.Transaction, error) {
+	return _Main.Contract.DoAward(&_Main.TransactOpts)
 }
 
-// AddShard is a paid mutator transaction binding the contract method 0x97319ed2.
+// DoAward is a paid mutator transaction binding the contract method 0x8c6e1ca9.
 //
-// Solidity: function addShard(weight uint256) returns(shardId uint256)
-func (_Main *MainTransactorSession) AddShard(weight *big.Int) (*types.Transaction, error) {
-	return _Main.Contract.AddShard(&_Main.TransactOpts, weight)
-}
-
-// Award is a paid mutator transaction binding the contract method 0xfbdd25e4.
-//
-// Solidity: function award(beneficiary address) returns()
-func (_Main *MainTransactor) Award(opts *bind.TransactOpts, beneficiary common.Address) (*types.Transaction, error) {
-	return _Main.contract.Transact(opts, "award", beneficiary)
-}
-
-// Award is a paid mutator transaction binding the contract method 0xfbdd25e4.
-//
-// Solidity: function award(beneficiary address) returns()
-func (_Main *MainSession) Award(beneficiary common.Address) (*types.Transaction, error) {
-	return _Main.Contract.Award(&_Main.TransactOpts, beneficiary)
-}
-
-// Award is a paid mutator transaction binding the contract method 0xfbdd25e4.
-//
-// Solidity: function award(beneficiary address) returns()
-func (_Main *MainTransactorSession) Award(beneficiary common.Address) (*types.Transaction, error) {
-	return _Main.Contract.Award(&_Main.TransactOpts, beneficiary)
+// Solidity: function doAward() returns()
+func (_Main *MainTransactorSession) DoAward() (*types.Transaction, error) {
+	return _Main.Contract.DoAward(&_Main.TransactOpts)
 }
 
 // Min is a paid mutator transaction binding the contract method 0x7ae2b5c7.
@@ -1088,6 +1177,27 @@ func (_Main *MainTransactorSession) Min(val1 *big.Int, val2 *big.Int) (*types.Tr
 	return _Main.Contract.Min(&_Main.TransactOpts, val1, val2)
 }
 
+// Pay is a paid mutator transaction binding the contract method 0xc4076876.
+//
+// Solidity: function pay(beneficiary address, value uint256) returns()
+func (_Main *MainTransactor) Pay(opts *bind.TransactOpts, beneficiary common.Address, value *big.Int) (*types.Transaction, error) {
+	return _Main.contract.Transact(opts, "pay", beneficiary, value)
+}
+
+// Pay is a paid mutator transaction binding the contract method 0xc4076876.
+//
+// Solidity: function pay(beneficiary address, value uint256) returns()
+func (_Main *MainSession) Pay(beneficiary common.Address, value *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.Pay(&_Main.TransactOpts, beneficiary, value)
+}
+
+// Pay is a paid mutator transaction binding the contract method 0xc4076876.
+//
+// Solidity: function pay(beneficiary address, value uint256) returns()
+func (_Main *MainTransactorSession) Pay(beneficiary common.Address, value *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.Pay(&_Main.TransactOpts, beneficiary, value)
+}
+
 // PostFlush is a paid mutator transaction binding the contract method 0x12df9412.
 //
 // Solidity: function postFlush(pos uint256, tosend address[], amount uint256[], times uint256[]) returns()
@@ -1107,6 +1217,27 @@ func (_Main *MainSession) PostFlush(pos *big.Int, tosend []common.Address, amoun
 // Solidity: function postFlush(pos uint256, tosend address[], amount uint256[], times uint256[]) returns()
 func (_Main *MainTransactorSession) PostFlush(pos *big.Int, tosend []common.Address, amount []*big.Int, times []*big.Int) (*types.Transaction, error) {
 	return _Main.Contract.PostFlush(&_Main.TransactOpts, pos, tosend, amount, times)
+}
+
+// PubAddShard is a paid mutator transaction binding the contract method 0x4dba88f0.
+//
+// Solidity: function pubAddShard(weight uint256) returns(shardId uint256)
+func (_Main *MainTransactor) PubAddShard(opts *bind.TransactOpts, weight *big.Int) (*types.Transaction, error) {
+	return _Main.contract.Transact(opts, "pubAddShard", weight)
+}
+
+// PubAddShard is a paid mutator transaction binding the contract method 0x4dba88f0.
+//
+// Solidity: function pubAddShard(weight uint256) returns(shardId uint256)
+func (_Main *MainSession) PubAddShard(weight *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.PubAddShard(&_Main.TransactOpts, weight)
+}
+
+// PubAddShard is a paid mutator transaction binding the contract method 0x4dba88f0.
+//
+// Solidity: function pubAddShard(weight uint256) returns(shardId uint256)
+func (_Main *MainTransactorSession) PubAddShard(weight *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.PubAddShard(&_Main.TransactOpts, weight)
 }
 
 // ReadFile is a paid mutator transaction binding the contract method 0x6616174a.
@@ -1235,25 +1366,46 @@ func (_Main *MainTransactorSession) RemoveFromAddressArray(index *big.Int) (*typ
 	return _Main.Contract.RemoveFromAddressArray(&_Main.TransactOpts, index)
 }
 
-// RemoveFromArray is a paid mutator transaction binding the contract method 0x628d08b8.
+// RemoveFromAddressArray2 is a paid mutator transaction binding the contract method 0x4e25b1fa.
 //
-// Solidity: function removeFromArray(array uint256[], index uint256) returns(uint256[])
-func (_Main *MainTransactor) RemoveFromArray(opts *bind.TransactOpts, array []*big.Int, index *big.Int) (*types.Transaction, error) {
-	return _Main.contract.Transact(opts, "removeFromArray", array, index)
+// Solidity: function removeFromAddressArray2(index uint256) returns()
+func (_Main *MainTransactor) RemoveFromAddressArray2(opts *bind.TransactOpts, index *big.Int) (*types.Transaction, error) {
+	return _Main.contract.Transact(opts, "removeFromAddressArray2", index)
 }
 
-// RemoveFromArray is a paid mutator transaction binding the contract method 0x628d08b8.
+// RemoveFromAddressArray2 is a paid mutator transaction binding the contract method 0x4e25b1fa.
 //
-// Solidity: function removeFromArray(array uint256[], index uint256) returns(uint256[])
-func (_Main *MainSession) RemoveFromArray(array []*big.Int, index *big.Int) (*types.Transaction, error) {
-	return _Main.Contract.RemoveFromArray(&_Main.TransactOpts, array, index)
+// Solidity: function removeFromAddressArray2(index uint256) returns()
+func (_Main *MainSession) RemoveFromAddressArray2(index *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.RemoveFromAddressArray2(&_Main.TransactOpts, index)
 }
 
-// RemoveFromArray is a paid mutator transaction binding the contract method 0x628d08b8.
+// RemoveFromAddressArray2 is a paid mutator transaction binding the contract method 0x4e25b1fa.
 //
-// Solidity: function removeFromArray(array uint256[], index uint256) returns(uint256[])
-func (_Main *MainTransactorSession) RemoveFromArray(array []*big.Int, index *big.Int) (*types.Transaction, error) {
-	return _Main.Contract.RemoveFromArray(&_Main.TransactOpts, array, index)
+// Solidity: function removeFromAddressArray2(index uint256) returns()
+func (_Main *MainTransactorSession) RemoveFromAddressArray2(index *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.RemoveFromAddressArray2(&_Main.TransactOpts, index)
+}
+
+// RemoveFromArray is a paid mutator transaction binding the contract method 0xeb56ea90.
+//
+// Solidity: function removeFromArray(index uint256) returns()
+func (_Main *MainTransactor) RemoveFromArray(opts *bind.TransactOpts, index *big.Int) (*types.Transaction, error) {
+	return _Main.contract.Transact(opts, "removeFromArray", index)
+}
+
+// RemoveFromArray is a paid mutator transaction binding the contract method 0xeb56ea90.
+//
+// Solidity: function removeFromArray(index uint256) returns()
+func (_Main *MainSession) RemoveFromArray(index *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.RemoveFromArray(&_Main.TransactOpts, index)
+}
+
+// RemoveFromArray is a paid mutator transaction binding the contract method 0xeb56ea90.
+//
+// Solidity: function removeFromArray(index uint256) returns()
+func (_Main *MainTransactorSession) RemoveFromArray(index *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.RemoveFromArray(&_Main.TransactOpts, index)
 }
 
 // RemoveNode is a paid mutator transaction binding the contract method 0xb2b99ec9.
@@ -1382,6 +1534,27 @@ func (_Main *MainTransactorSession) SubmitVerifyTransaction(verifyGroupId common
 	return _Main.Contract.SubmitVerifyTransaction(&_Main.TransactOpts, verifyGroupId, verifyNodeId, blockNumber, fileHash, shardId)
 }
 
+// UpdateHardDrive is a paid mutator transaction binding the contract method 0x20a891fa.
+//
+// Solidity: function updateHardDrive(driveId address, scsId address, weight uint256) returns()
+func (_Main *MainTransactor) UpdateHardDrive(opts *bind.TransactOpts, driveId common.Address, scsId common.Address, weight *big.Int) (*types.Transaction, error) {
+	return _Main.contract.Transact(opts, "updateHardDrive", driveId, scsId, weight)
+}
+
+// UpdateHardDrive is a paid mutator transaction binding the contract method 0x20a891fa.
+//
+// Solidity: function updateHardDrive(driveId address, scsId address, weight uint256) returns()
+func (_Main *MainSession) UpdateHardDrive(driveId common.Address, scsId common.Address, weight *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.UpdateHardDrive(&_Main.TransactOpts, driveId, scsId, weight)
+}
+
+// UpdateHardDrive is a paid mutator transaction binding the contract method 0x20a891fa.
+//
+// Solidity: function updateHardDrive(driveId address, scsId address, weight uint256) returns()
+func (_Main *MainTransactorSession) UpdateHardDrive(driveId common.Address, scsId common.Address, weight *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.UpdateHardDrive(&_Main.TransactOpts, driveId, scsId, weight)
+}
+
 // UpdateNodeList is a paid mutator transaction binding the contract method 0x31a06771.
 //
 // Solidity: function updateNodeList(newlist address[]) returns()
@@ -1401,6 +1574,27 @@ func (_Main *MainSession) UpdateNodeList(newlist []common.Address) (*types.Trans
 // Solidity: function updateNodeList(newlist address[]) returns()
 func (_Main *MainTransactorSession) UpdateNodeList(newlist []common.Address) (*types.Transaction, error) {
 	return _Main.Contract.UpdateNodeList(&_Main.TransactOpts, newlist)
+}
+
+// UpdateScsMsg is a paid mutator transaction binding the contract method 0x6078ad60.
+//
+// Solidity: function updateScsMsg(scsId address, status uint256) returns()
+func (_Main *MainTransactor) UpdateScsMsg(opts *bind.TransactOpts, scsId common.Address, status *big.Int) (*types.Transaction, error) {
+	return _Main.contract.Transact(opts, "updateScsMsg", scsId, status)
+}
+
+// UpdateScsMsg is a paid mutator transaction binding the contract method 0x6078ad60.
+//
+// Solidity: function updateScsMsg(scsId address, status uint256) returns()
+func (_Main *MainSession) UpdateScsMsg(scsId common.Address, status *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.UpdateScsMsg(&_Main.TransactOpts, scsId, status)
+}
+
+// UpdateScsMsg is a paid mutator transaction binding the contract method 0x6078ad60.
+//
+// Solidity: function updateScsMsg(scsId address, status uint256) returns()
+func (_Main *MainTransactorSession) UpdateScsMsg(scsId common.Address, status *big.Int) (*types.Transaction, error) {
+	return _Main.Contract.UpdateScsMsg(&_Main.TransactOpts, scsId, status)
 }
 
 // VoteVerifyTransaction is a paid mutator transaction binding the contract method 0x6446c074.

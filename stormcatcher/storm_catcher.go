@@ -22,6 +22,16 @@ func init() {
 	flag.StringVar(&ipfsHostPort, "ipfs-host-port", "localhost:5001", "host:port, e.g. 127.0.0.1:5001")
 	flag.StringVar(&contractAddr, "subChain-contract-address", "", "contractAddress, e.g. 0x")
 	flag.StringVar(&SubChainIp, "subChain-address", "localhost:50068/rpc", "subChainAddress, e.g. 127.0.0.1:50068")
+	flag.StringVar(&VnodeIp, "vnode-address", "http://120.78.2.59:8547", "VnodeIp, e.g. http://0.0.0.0:8547")
+	flag.StringVar(&memDeviceDir, "memory-device-directory", "/dev/vda1", "memDeviceDir, e.g. /dev/vda1")
+
+	//	listenAddressAndPort = "127.0.0.1:18080"
+	//	redisHostPort = "127.0.0.1:6379"
+	//	ipfsHostPort = "127.0.0.1:5001"
+	//	contractAddr = "0xe8e8d7c1f3ae998e7c3055c292649e7c1a7f2065"
+	//	SubChainIp = "127.0.0.1:50068/rpc"
+	//	VnodeIp = "http://120.78.2.59:8547"
+	//	memDeviceDir = "/dev/vda1"
 }
 
 // AccessType is the ipfs file access type
@@ -42,35 +52,35 @@ type FileHash struct {
 }
 
 type ReadRequest struct {
-	Filehash string `validate:"len=46,regexp=^[a-zA-Z0-9]*$"`
-	IpfsId   string `validate:"regexp=^[a-zA-Z0-9]*$"`
+	Filehash string //`validate:"regexp=^[a-zA-Z0-9]*$"`
+	IpfsId   string `validate:"regexp=^[a-zA-Z0-9\/]*$"`
 	ShardId  string `validate:"regexp=^[0-9]*$"`
 }
 
 type ProxyReadRequest struct {
-	Filehash     string `validate:"len=46,regexp=^[a-zA-Z0-9]*$"`
+	Filehash     string //`validate:"regexp=^[a-zA-Z0-9]*$"`
 	ProxyAddress string
 }
 
 type WriteRequest struct {
-	Filehash string `validate:"len=46,regexp=^[a-zA-Z0-9]*$"`
-	IpfsId   string `validate:"regexp=^[a-zA-Z0-9]*$"`
+	Filehash string //`validate:"regexp=^[a-zA-Z0-9]*$"`
+	IpfsId   string `validate:"regexp=^[a-zA-Z0-9\/]*$"`
 	ShardId  string `validate:"regexp=^[0-9]*$"`
 }
 
 type ProxyWriteRequest struct {
-	Filehash     string `validate:"len=46,regexp=^[a-zA-Z0-9]*$"`
+	Filehash     string //`validate:"regexp=^[a-zA-Z0-9]*$"`
 	ProxyAddress string
 }
 
 type DeleteRequest struct {
-	Filehash string `validate:"len=46,regexp=^[a-zA-Z0-9]*$"`
-	IpfsId   string `validate:"regexp=^[a-zA-Z0-9]*$"`
+	Filehash string //`validate:"regexp=^[a-zA-Z0-9]*$"`
+	IpfsId   string `validate:"regexp=^[a-zA-Z0-9\/]*$"`
 	ShardId  string `validate:"regexp=^[0-9]*$"`
 }
 
 type VerifyRequest struct {
-	//	Filehash string `validate:"len=46,regexp=^[a-zA-Z0-9]*$"`
+	//	Filehash string `validate:"regexp=^[a-zA-Z0-9]*$"`
 	//	Offset   string `validate:"regexp=^[0-9]*$"`
 
 	Block_int string `validate:"regexp=^[0-9]*$"`
@@ -79,11 +89,11 @@ type VerifyRequest struct {
 }
 
 type RestoreToLocalRequest struct {
-	Filehash string `validate:"len=46,regexp=^[a-zA-Z0-9]*$"`
+	Filehash string `validate:"regexp=^[a-zA-Z0-9]*$"`
 }
 
 type DirectDownloadRequest struct {
-	Filehash string `validate:"len=46,regexp=^[a-zA-Z0-9]*$"`
+	Filehash string `validate:"regexp=^[a-zA-Z0-9]*$"`
 }
 
 func readHandler(w http.ResponseWriter, r *http.Request) {
@@ -187,7 +197,7 @@ func catchHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		if err := AddTaskToQueue(IpfsDeleteQueueName, fileHash, ipfsId, shardIdStr); err != nil {
+		if err := AddTaskToQueue(IpfsDeleteQueueName, fileHash+"@#$"+ipfsId+"@#$"+shardIdStr); err != nil {
 			http.Error(w, "Can not enqueue delete request.", 500)
 			return
 		}
@@ -199,7 +209,7 @@ func catchHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		if err := AddTaskToQueue(IpfsWriteQueueName, fileHash, ipfsId, shardIdStr); err != nil {
+		if err := AddTaskToQueue(IpfsWriteQueueName, fileHash+"@#$"+ipfsId+"@#$"+shardIdStr); err != nil {
 			http.Error(w, "Can not enqueue write request.", 500)
 			return
 		}
@@ -211,7 +221,7 @@ func catchHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		if err := AddTaskToQueue(IpfsReadQueueName, fileHash, ipfsId, shardIdStr); err != nil {
+		if err := AddTaskToQueue(IpfsReadQueueName, fileHash+"@#$"+ipfsId+"@#$"+shardIdStr); err != nil {
 			http.Error(w, "Can not enqueue read request.", 500)
 			return
 		}
@@ -223,24 +233,27 @@ func decodeInput(hexString string) (string, string, int64, int64, error) {
 	invalidIpfsHasErr := errors.New("invalid ipfs hash format")
 	log.Debugf("hexString, |%v|", hexString)
 	hexLen := len(hexString)
-	if hexLen > 11*64 && hexLen < 12*64 {
+	if hexLen < 11*64 || hexLen > 12*64 {
 		log.Errorf("Ipfs Input Code is too short. %v", hexString)
 		return "", "", -1, -1, invalidIpfsHasErr
 	}
-	log.Debugf("hexString, %v", hexString)
 
-	funcCode := hexString[:8] //get function code
-	if funcCode != "633fb659" {
-		log.Errorf("Invalid ipfs function call. %v", funcCode)
-		return "", "", -1, -1, errors.New("invalid function call.")
+	if hexString[:2] == "0x" {
+		hexString = hexString[2:]
 	}
-	aType, aTypeErr := strconv.ParseInt(hexString[10+64:10+64*2], 16, 64)
 
-	shardId, shardIdErr := strconv.ParseInt(hexString[10+64*2:10+64*3], 16, 64)
+	//	funcCode := hexString[:8] //get function code
+	//	if funcCode != "37ed35c9" {
+	//		log.Errorf("Invalid ipfs function call. %v", funcCode)
+	//		return "", "", -1, -1, errors.New("invalid function call.")
+	//	}
+	aType, aTypeErr := strconv.ParseInt(hexString[8+64:8+64*2], 16, 64)
 
-	fileHashBytes, fileHashErr := hexutil.Decode("0x" + hexString[10+5*64:10+7*64])
+	shardId, shardIdErr := strconv.ParseInt(hexString[8+64*2:8+64*3], 16, 64)
 
-	ipfsIdBytes, ipfsIdErr := hexutil.Decode("0x" + hexString[10+8*64:10+11*64])
+	fileHashBytes, fileHashErr := hexutil.Decode("0x" + hexString[8+5*64:8+7*64])
+
+	ipfsIdBytes, ipfsIdErr := hexutil.Decode("0x" + hexString[8+8*64:8+11*64])
 
 	if aTypeErr != nil && shardIdErr != nil && fileHashErr != nil && ipfsIdErr != nil {
 		return "", "", -1, -1, errors.New("input parameter error")
@@ -250,8 +263,8 @@ func decodeInput(hexString string) (string, string, int64, int64, error) {
 	ipfsId := string(ipfsIdBytes)
 
 	log.Debugf("fileHash, %v", fileHash)
-	if fileHash[0:2] != "Qm" {
-		log.Debugf("hex |%v|", hexString[0:2])
+	if fileHash[:2] != "Qm" {
+		log.Debugf("hex |%v|", hexString[:2])
 		log.Errorf("Ipfs Hash is in wrong format. %v", fileHash)
 		return "", "", -1, -1, invalidIpfsHasErr
 	}
@@ -302,6 +315,8 @@ func decodeInput(hexString string) (string, string, int64, int64, error) {
 
 func main() {
 
+	//	fmt.Println(decodeInput(`37ed35c900000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000500000000000000000000000000000000000000000000000000000000000000e0000000000000000000000000000000000000000000000000000000000000002e516d6355764439327873617462526f733571674e7562704542455077457653765170514e417243756272534c4366000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004f2f6970342f3139322e3136382e312e3130372f7463702f343030312f697066732f516d52756a4e744642586e4e4c46486477483867585969454d46463771686b52717742386a46556b5045587467710000000000000000000000000000000000`))
+
 	flag.Parse()
 
 	// verify does not use queue and should return immediately the result
@@ -336,10 +351,13 @@ func main() {
 	initThrottledQueueHandlers()
 
 	//init gc routine
-	initGCWorker()
+	//	initGCWorker()
 
 	//init unpin worker
 	initUnpinWorker()
+
+	//硬盘检测
+	subHardDiskInfo()
 
 	// start server
 	log.Critical(http.ListenAndServe(listenAddressAndPort, nil))

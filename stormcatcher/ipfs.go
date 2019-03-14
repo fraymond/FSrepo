@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -94,11 +95,18 @@ func checkoutIPFSFile(conAddress, hash string) (*os.File, error) {
 		log.Fatal(err)
 		return nil, err
 	}
-	io.Copy(tmpfile, resp.Body)
 
-	fmt.Println(tmpfile.Name())
+	if resp.StatusCode == 200 {
+		//		body, _ := ioutil.ReadAll(resp.Body)
+		//		fmt.Println(string(body))
 
-	return tmpfile, nil
+		fmt.Println(tmpfile.Name())
+
+		io.Copy(tmpfile, resp.Body)
+		return tmpfile, nil
+	} else {
+		return nil, errors.New("ipfs cat file fail")
+	}
 }
 
 func createAlteredTmpFile(tmpfile *os.File) *os.File {

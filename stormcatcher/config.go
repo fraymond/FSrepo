@@ -14,4 +14,8 @@ var RestoredFileUnpinInterval = int64(3600 * 24) // in seconds
 
 //var vnodeIP string = "http://gateway.moac.io/mainnet"
 //var VnodeIp string = "http://gateway.moac.io/testnet"
-var VnodeIp string = "http://120.79.239.44:8546"
+//var VnodeIp string = "http://120.78.2.59:8547"
+var VnodeIp string
+
+//存储设备目录
+var memDeviceDir string

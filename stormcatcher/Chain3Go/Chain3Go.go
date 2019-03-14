@@ -4,7 +4,7 @@ package Chain3Go
 import (
 	"fmt"
 	//	"math/big"
-
+	//	"errors"
 	"stormcatcher/Chain3Go/netServe"
 	"stormcatcher/Chain3Go/requestData"
 	"stormcatcher/Chain3Go/types"
@@ -1290,8 +1290,13 @@ func (rpcCli *RpcClient) ScsRPCMethod_GetBalance(subChainAddr, sender string) (s
 
 func (rpcCli *RpcClient) ScsRPCMethod_GetNonce(subChainAddr, sender string) (float64, error) {
 
+	defer func() {
+		if re := recover(); re != nil {
+			fmt.Println("ScsRPCMethod_GetNonce - ", re)
+		}
+	}()
+
 	pointer, err := rpcCli.netServeHandler(ScsRPCMethod_GetNonce, map[string]interface{}{"SubChainAddr": subChainAddr, "Sender": sender})
-	fmt.Println(pointer.Result)
 	if err != nil {
 		return 0, err
 	}
@@ -1301,7 +1306,6 @@ func (rpcCli *RpcClient) ScsRPCMethod_GetNonce(subChainAddr, sender string) (flo
 func (rpcCli *RpcClient) ScsRPCMethod_GetBlockNumber(subChainAddr string) (float64, error) {
 
 	pointer, err := rpcCli.netServeHandler(ScsRPCMethod_GetBlockNumber, map[string]interface{}{"subChainAddr": subChainAddr})
-	fmt.Println(pointer.Result)
 	if err != nil {
 		return 0, err
 	}

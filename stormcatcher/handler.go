@@ -6,10 +6,12 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-
 	"math/big"
 	"net/http"
 	"os"
+	"os/exec"
+	"strconv"
+	"strings"
 	"time"
 
 	validator "gopkg.in/validator.v2"
@@ -55,7 +57,7 @@ func makeAccountsManager() (*accounts.Manager, error) {
 	scryptP := keystore.StandardScryptP
 
 	var (
-		keydir string = "./keystore"
+		keydir string = "./scskeystore"
 	)
 
 	if err := os.MkdirAll(keydir, 0700); err != nil {
@@ -135,9 +137,11 @@ func handleIPFSRead(originalFileHash string) error {
 //链接对方网络，然后再断开
 func handleIPFSRead(args ...string) error {
 
-	//	fileHash := args[0]
-	conAddress := args[1]
-	shardId := args[2]
+	strArray := strings.Split(args[0], "@#$")
+
+	//	fileHash := strArray[0]
+	conAddress := strArray[1]
+	shardId := strArray[2]
 
 	log.Info("shardId:", shardId)
 
@@ -149,10 +153,11 @@ func handleIPFSRead(args ...string) error {
 func HandleIPFSWrite(args ...string) error {
 	log.Info("Inside write gorouting")
 
-	fileHash := args[0]
-	conAddress := args[1]
-	shardId := args[2]
+	strArray := strings.Split(args[0], "@#$")
 
+	fileHash := strArray[0]
+	conAddress := strArray[1]
+	shardId := strArray[2]
 	log.Info("shardId:", shardId)
 
 	// step 1, get the file from ipfs network
@@ -184,9 +189,11 @@ func HandleIPFSWrite(args ...string) error {
 func HandleIPFSDelete(args ...string) error {
 	log.Info("inside delete gorouting")
 
-	fileHash := args[0]
-	//	conAddress := args[1]
-	shardId := args[2]
+	strArray := strings.Split(args[0], "@#$")
+
+	fileHash := strArray[0]
+	//	conAddress := strArray[1]
+	shardId := strArray[2]
 
 	log.Info("shardId:", shardId)
 
@@ -369,7 +376,25 @@ var HandleIPFSVerify = func(blockH, r1, r2 int64) error {
 	if nodeErr == nil {
 		return errors.New("node info get fail")
 	}
+	//fmt.Println(scsId, nodeInfo)
 	if nodeInfo.LastVerifiedBlock.Int64() == blockH {
+
+		str, strType, strErr := getHardDiskInfo()
+		if strErr != nil {
+			log.Info("getHardDiskInfo fail")
+			return strErr
+		}
+
+		driveInfo, _ := token.HardDriveMapping(nil, common.HexToAddress(str))
+		tmpScsId := driveInfo.ScsId.String()
+		if tmpScsId[:2] != "0x" {
+			tmpScsId = "0x" + tmpScsId
+		}
+		if strings.ToLower(tmpScsId) != strings.ToLower(scsId) || strType < driveInfo.Weight.Int64() {
+			log.Info("Device information does not match")
+			return errors.New("Device information does not match")
+		}
+
 		var (
 			verifyGroupId, verifyNodeId string
 			blockNumber                 int64
@@ -693,15 +718,15 @@ func runIpfsGC() {
 	ipfsRepoGc()
 }
 
-func initGCWorker() {
-	// run ipfs repo gc periodically
-	go func() {
-		for {
-			runIpfsGC()
-			time.Sleep(time.Duration(ipfsGCInterval) * time.Second)
-		}
-	}()
-}
+//func initGCWorker() {
+//	// run ipfs repo gc periodically
+//	go func() {
+//		for {
+//			runIpfsGC()
+//			time.Sleep(time.Duration(ipfsGCInterval) * time.Second)
+//		}
+//	}()
+//}
 
 func runIpfsUnpin() {
 	tNow := time.Now().Unix()
@@ -731,4 +756,70 @@ func initUnpinWorker() {
 			time.Sleep(time.Duration(ipfsUnpinInterval) * time.Second)
 		}
 	}()
+}
+
+//提交硬盘信息
+func subHardDiskInfo() {
+
+	hardDiskId, hardDiskSize, err := getHardDiskInfo()
+	if err == nil { //提交交易
+		dBytes, dErr := updateHardDriveAssembleByte(common.HexToMoac(hardDiskId).Hex(), scsId, hardDiskSize)
+		if dErr == nil {
+			_, hashErr := sendTxOperate(dBytes)
+			if hashErr == nil {
+				log.Info("硬盘信息已经提交！")
+			} else {
+				log.Error("hashErr:", hashErr)
+			}
+		} else {
+			log.Error("dErr:", dErr)
+		}
+	} else {
+		log.Error("err:", err)
+	}
+}
+
+//获取硬盘信息
+func getHardDiskInfo() (string, int64, error) {
+	cmdStr1 := `ls -l /dev/disk/by-uuid/ | grep ` + memDeviceDir + ` | awk '{print $9}'` //获取硬盘ID
+	var cmdStr2 string = ""
+	cmdStr3 := `fdisk -l | grep ` + memDeviceDir + ` | awk '{print $2}'` //获取硬盘大小
+
+	outByte1, err1 := execLinuxCommand("/bin/sh", "-c", cmdStr1)
+	if err1 == nil {
+		outByte3, err3 := execLinuxCommand("/bin/sh", "-c", cmdStr3)
+		if err3 != nil {
+			return "", 0, err3
+		}
+		if string(outByte3) == "*" {
+			cmdStr2 = `fdisk -l | grep ` + memDeviceDir + ` | awk '{print $5}'`
+		} else {
+			cmdStr2 = `fdisk -l | grep ` + memDeviceDir + ` | awk '{print $4}'`
+		}
+		outByte2, err2 := execLinuxCommand("/bin/sh", "-c", cmdStr2)
+		if err2 == nil {
+			if (string(outByte2))[:7] != "WARNING" {
+				hardDiskId := strings.Replace(strings.Replace(string(outByte1), "\n", "", -1), "-", "", -1)
+				hardDiskSize, err := strconv.ParseInt(strings.Replace(strings.Replace(string(outByte2), "\n", "", -1), "+", "", -1), 10, 64)
+				if err == nil {
+					return hardDiskId, int64(float64(hardDiskSize) / 1000 / 1000 / 1000), nil
+				} else {
+					return "", 0, err
+				}
+			} else {
+				return "", 0, errors.New(string(outByte2))
+			}
+		} else {
+			return "", 0, err2
+		}
+	} else {
+		return "", 0, err1
+	}
+}
+
+//执行Linux命令
+func execLinuxCommand(a, b, cmdStr string) ([]byte, error) {
+
+	cmd := exec.Command(a, b, cmdStr)
+	return cmd.Output()
 }
